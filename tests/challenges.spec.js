@@ -234,7 +234,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('04 - Exibe a condicao do usuario se esta ativo ou inativo', () => {
+  describe.skip('04 - Exibe a condicao do usuario se esta ativo ou inativo', () => {
     it('Verifica o desafio 4', async () => {
       const challengeQuery = readFileSync('desafio4.sql', 'utf8');
 
@@ -254,7 +254,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe.skip('06 - Exibe o relatório de faturamento da empresa', () => {
+  describe('06 - Exibe o relatório de faturamento da empresa', () => {
     it('Verifica o desafio 6', async () => {
       const challengeQuery = readFileSync('desafio6.sql', 'utf8');
 
