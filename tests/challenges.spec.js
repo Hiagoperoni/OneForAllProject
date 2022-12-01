@@ -214,7 +214,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('02 - Exibe as estatísticas musicais', () => {
+  describe.skip('02 - Exibe as estatísticas musicais', () => {
     it('Verifica o desafio 2', async () => {
       const challengeQuery = readFileSync('desafio2.sql', 'utf8');
 
@@ -224,7 +224,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('03 - Exibe o histórico de reprodução para cada pessoa usuária', () => {
+  describe.skip('03 - Exibe o histórico de reprodução para cada pessoa usuária', () => {
     it('Verifica o desafio 3', async () => {
       const challengeQuery = readFileSync('desafio3.sql', 'utf8');
 
@@ -234,7 +234,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe.skip('04 - Exibe a condicao do usuario se esta ativo ou inativo', () => {
+  describe('04 - Exibe a condicao do usuario se esta ativo ou inativo', () => {
     it('Verifica o desafio 4', async () => {
       const challengeQuery = readFileSync('desafio4.sql', 'utf8');
 
