@@ -224,7 +224,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('03 - Exibe o histórico de reprodução para cada pessoa usuária', () => {
+  describe.skip('03 - Exibe o histórico de reprodução para cada pessoa usuária', () => {
     it('Verifica o desafio 3', async () => {
       const challengeQuery = readFileSync('desafio3.sql', 'utf8');
 
@@ -234,7 +234,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('04 - Exibe a condicao do usuario se esta ativo ou inativo', () => {
+  describe.skip('04 - Exibe a condicao do usuario se esta ativo ou inativo', () => {
     it('Verifica o desafio 4', async () => {
       const challengeQuery = readFileSync('desafio4.sql', 'utf8');
 
@@ -244,7 +244,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('05 - Exibe top 2 hits mais tocados no momento', () => {
+  describe.skip('05 - Exibe top 2 hits mais tocados no momento', () => {
     it('Verifica o desafio 5', async () => {
       const challengeQuery = readFileSync('desafio5.sql', 'utf8');
 
@@ -254,7 +254,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('06 - Exibe o relatório de faturamento da empresa', () => {
+  describe.skip('06 - Exibe o relatório de faturamento da empresa', () => {
     it('Verifica o desafio 6', async () => {
       const challengeQuery = readFileSync('desafio6.sql', 'utf8');
 
@@ -264,7 +264,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('07 - Exibe uma relação de todos os álbuns produzidos por cada artista', () => {
+  describe.skip('07 - Exibe uma relação de todos os álbuns produzidos por cada artista', () => {
     it('Verifica o desafio 7', async () => {
       const challengeQuery = readFileSync('desafio7.sql', 'utf8');
 
@@ -274,7 +274,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('08 - Exibe uma relação de álbuns produzidos pelo artista Elis Regina', () => {
+  describe.skip('08 - Exibe uma relação de álbuns produzidos pelo artista Elis Regina', () => {
     it('Verifica o desafio 8', async () => {
       const challengeQuery = readFileSync('desafio8.sql', 'utf8');
 
@@ -284,7 +284,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('09 - Exibe a quantidade de músicas que estão presentes atualmente no histórico de reprodução da pessoa usuária Barbara Liskov', () => {
+  describe.skip('09 - Exibe a quantidade de músicas que estão presentes atualmente no histórico de reprodução da pessoa usuária Barbara Liskov', () => {
     it('Verifica o desafio 9', async () => {
       const challengeQuery = readFileSync('desafio9.sql', 'utf8');
 
@@ -294,7 +294,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('10 - Exibe o nome e a quantidade de vezes que cada canção foi tocada por pessoas usuárias do plano gratuito ou pessoal', () => {
+  describe.skip('10 - Exibe o nome e a quantidade de vezes que cada canção foi tocada por pessoas usuárias do plano gratuito ou pessoal', () => {
     it('Verifica o desafio 10', async () => {
       const challengeQuery = readFileSync('desafio10.sql', 'utf8');
 
@@ -304,7 +304,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('11 - Exibe nomes de musicas em sua forma normal e com string trocada', () => {
+  describe.skip('11 - Exibe nomes de musicas em sua forma normal e com string trocada', () => {
     it('Verifica o desafio 11', async () => {
       const challengeQuery = readFileSync('desafio11.sql', 'utf8');
 
