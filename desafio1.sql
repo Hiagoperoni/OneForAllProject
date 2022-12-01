@@ -2,25 +2,25 @@ DROP DATABASE IF EXISTS SpotifyClone;
 
 CREATE DATABASE SpotifyClone;
 
-CREATE TABLE SpotifyClone.Plans(
-	plan_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE SpotifyClone.plans(
+	plan_id INT AUTO_INCREMENT PRIMARY KEY,
     plan_name VARCHAR(15) NOT NULL,
     plan_price DOUBLE NOT NULL
 ) ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.Plans (plan_id, plan_name, plan_price)
+INSERT INTO SpotifyClone.plans (plan_id, plan_name, plan_price)
 VALUES
 	(1, 'gratuito', 0.00),
     (2, 'familiar', 7.99),
     (3, 'universitario', 5.99),
     (4, 'pessoal', 6.99);
 
-CREATE TABLE SpotifyClone.Artists(
-	artist_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE SpotifyClone.artists(
+	artist_id INT AUTO_INCREMENT PRIMARY KEY,
     artist_name VARCHAR(20) NOT NULL
 ) ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.Artists (artist_id, artist_name)
+INSERT INTO SpotifyClone.artists (artist_id, artist_name)
 VALUES
 	(1, 'Beyoncé'),
     (2, 'Queen'),
@@ -29,16 +29,16 @@ VALUES
     (5, 'Blind Guardian'),
     (6, 'Nina Simone');
 
-CREATE TABLE SpotifyClone.Users(
-	user_id INT PRIMARY KEY AUTO_INCREMENT,
-  user_name VARCHAR(40) NOT NULL,
+CREATE TABLE SpotifyClone.users(
+	user_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(40) NOT NULL,
     user_age INT NOT NULL,
-    user_plan INT NOT NULL,
-    FOREIGN KEY (user_plan) REFERENCES Plans (plan_id),
+    user_plan INTEGER,
+    FOREIGN KEY (user_plan) REFERENCES SpotifyClone.plans(plan_id),
     user_signature DATE
 ) ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.Users (user_id, user_name, user_age, user_plan, user_signature)
+INSERT INTO SpotifyClone.users (user_id, user_name, user_age, user_plan, user_signature)
 VALUES
 	(1, 'Barbara Liskov', 82, 1, '2019-10-20'),
     (2, 'Robert Cecil Martin', 58, 1, '2017-01-06'),
@@ -50,16 +50,41 @@ VALUES
     (8, 'Christopher Alexander', 85, 4, '2019-06-05'),
     (9, 'Judith Butler', 45, 4, '2020-05-13'),
     (10, 'Jorge Amado', 58, 4, '2017-02-17');
+    
+CREATE TABLE SpotifyClone.followers(
+	user_id INTEGER,
+    artist_id INTEGER,
+    CONSTRAINT PRIMARY KEY(user_id, artist_id),
+		FOREIGN KEY (user_id) REFERENCES SpotifyClone.users(user_id),
+		FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artists(artist_id)
+) ENGINE = InnoDB;
+ 
+INSERT INTO SpotifyClone.followers (user_id, artist_id)
+VALUES 
+	(1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 1),
+    (2, 3),
+    (3, 2),
+    (4, 4),
+    (5, 5),
+    (5, 6),
+    (6, 6),
+    (6, 1),
+    (7, 6),
+    (9, 3),
+    (10, 2);
 
-CREATE TABLE SpotifyClone.Albuns(
-	album_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE SpotifyClone.albuns(
+	album_id INT AUTO_INCREMENT PRIMARY KEY,
     album_name VARCHAR(30) NOT NULL,
-    album_artist INT NOT NULL,
-    FOREIGN KEY (album_artist) REFERENCES Artists (artist_id),
+    album_artist INTEGER,
+    FOREIGN KEY (album_artist) REFERENCES SpotifyClone.artists(artist_id),
     album_release INT NOT NULL
 ) ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.Albuns (album_id, album_name, album_artist, album_release)
+INSERT INTO SpotifyClone.albuns (album_id, album_name, album_artist, album_release)
 VALUES
 	(1, 'Renaissance', 1, 2022),
     (2, 'Jazz', 2, 1978),
@@ -70,17 +95,17 @@ VALUES
     (7, 'Somewhere Far Beyond', 5, 2007),
     (8, 'I Put A Spell On You', 6, 2012);
 
-CREATE TABLE SpotifyClone.Musics(
-	music_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE SpotifyClone.musics(
+	music_id INT AUTO_INCREMENT  PRIMARY KEY,
     music_name VARCHAR(50) NOT NULL,
-    music_artist INT NOT NULL,
-    FOREIGN KEY (music_artist) REFERENCES Artists (artist_id),
-    music_album INT NOT NULL,
-    FOREIGN KEY (music_album) REFERENCES Albuns (album_id),
+    music_artist INTEGER,
+    FOREIGN KEY (music_artist) REFERENCES SpotifyClone.artists(artist_id),
+    music_album INTEGER,
+    FOREIGN KEY (music_album) REFERENCES SpotifyClone.albuns(album_id),
     music_duration INT NOT NULL
 ) ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.Musics (music_id, music_name, music_artist, music_album, music_duration)
+INSERT INTO SpotifyClone.musics (music_id, music_name, music_artist, music_album, music_duration)
 VALUES 
 	(1, 'BREAK MY SOUL', 1, 1, 279),
     (2, 'VIRGO’S GROOVE', 1, 1, 369),
@@ -93,55 +118,30 @@ VALUES
     (9, 'The Bard’s Song', 5, 7, 244),
     (10, 'Feeling Good', 6, 8, 100);
 
-CREATE TABLE SpotifyClone.Reproductions(
-	rep_id INT PRIMARY KEY NOT NULL,
-    rep_music INT NOT NULL,
-    FOREIGN KEY (rep_music) REFERENCES Musics (music_id),
-    rep_user INT NOT NULL,
-    FOREIGN KEY (rep_user) REFERENCES Users (user_id),
+CREATE TABLE SpotifyClone.reproductions(
+	rep_user INTEGER,
+    rep_music INTEGER,
+    CONSTRAINT PRIMARY KEY(rep_user, rep_music),
+    FOREIGN KEY (rep_user) REFERENCES SpotifyClone.users(user_id),
+    FOREIGN KEY (rep_music) REFERENCES SpotifyClone.musics(music_id),
     rep_date DATETIME NOT NULL
 ) ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.Reproductions (rep_id, rep_music, rep_user, rep_date)
+INSERT INTO SpotifyClone.reproductions (rep_music, rep_user, rep_date)
 VALUES
-	(1, 8, 1, '2022-02-28 10:45:55'),
-    (2, 2, 1, '2020-05-02 05:30:35'),
-    (3, 10, 1, '2020-03-06 11:22:33'),
-    (4, 10, 2, '2022-08-05 08:05:17'),
-    (5, 7, 2, '2020-01-02 07:40:33'),
-    (6, 10, 3, '2020-11-13 16:55:13'),
-    (7, 2, 3, '2020-12-05 18:38:30'),
-    (8, 8, 4, '2021-08-15 17:10:10'),
-    (9, 8, 5, '2022-01-09 01:44:33'),
-    (10, 5, 5, '2020-08-06 15:23:43'),
-    (11, 7, 6, '2017-01-24 00:31:17'),
-    (12, 1, 6, '2017-10-12 12:35:20'),
-    (13, 4, 7, '2011-12-15 22:30:49'),
-    (14, 4, 8, '2012-03-17 14:56:41'),
-    (15, 9, 9, '2022-02-24 21:14:22'),
-    (16, 3, 10, '2015-12-13 08:30:22');
-
-CREATE TABLE SpotifyClone.Following(
-	follow_id INT PRIMARY KEY AUTO_INCREMENT,
-    follow_user INT NOT NULL,
-    FOREIGN KEY (follow_user) REFERENCES Users (user_id),
-    follow_artist INT NOT NULL,
-    FOREIGN KEY (follow_artist) REFERENCES Artists (artist_id)
-) ENGINE = InnoDB;
- 
-INSERT INTO SpotifyClone.Following (follow_id, follow_user, follow_artist)
-VALUES 
-	(1, 1, 1),
-    (2, 1, 2),
-    (3, 1, 3),
-    (4, 2, 1),
-    (5, 2, 3),
-    (6, 3, 2),
-    (7, 4, 4),
-    (8, 5, 5),
-    (9, 5, 6),
-    (10, 6, 6),
-    (11, 6, 1),
-    (12, 7, 6),
-    (13, 9, 3),
-    (14, 10, 2);
+	(8, 1, '2022-02-28 10:45:55'),
+    (2, 1, '2020-05-02 05:30:35'),
+    (10, 1, '2020-03-06 11:22:33'),
+    (10, 2, '2022-08-05 08:05:17'),
+    (7, 2, '2020-01-02 07:40:33'),
+    (10, 3, '2020-11-13 16:55:13'),
+    (2, 3, '2020-12-05 18:38:30'),
+    (8, 4, '2021-08-15 17:10:10'),
+    (8, 5, '2022-01-09 01:44:33'),
+    (5, 5, '2020-08-06 15:23:43'),
+    (7, 6, '2017-01-24 00:31:17'),
+    (1, 6, '2017-10-12 12:35:20'),
+    (4, 7, '2011-12-15 22:30:49'),
+    (4, 8, '2012-03-17 14:56:41'),
+    (9, 9, '2022-02-24 21:14:22'),
+    (3, 10, '2015-12-13 08:30:22');
