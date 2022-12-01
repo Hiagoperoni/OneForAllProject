@@ -42,7 +42,7 @@ describe('Queries de seleção', () => {
   });
 
 
-  describe('01 - Normalize as tabelas para a 3ª Forma Normal', () => {
+  describe.skip('01 - Normalize as tabelas para a 3ª Forma Normal', () => {
     const hasForeignKey = async (table, referencedTable) => {
       const query = `
       SELECT COUNT(COLUMN_NAME) AS REFERENCE_COUNT
@@ -214,7 +214,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe.skip('02 - Exibe as estatísticas musicais', () => {
+  describe('02 - Exibe as estatísticas musicais', () => {
     it('Verifica o desafio 2', async () => {
       const challengeQuery = readFileSync('desafio2.sql', 'utf8');
 
