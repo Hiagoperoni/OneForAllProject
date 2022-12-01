@@ -254,7 +254,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('06 - Exibe o relatório de faturamento da empresa', () => {
+  describe.skip('06 - Exibe o relatório de faturamento da empresa', () => {
     it('Verifica o desafio 6', async () => {
       const challengeQuery = readFileSync('desafio6.sql', 'utf8');
 
@@ -274,7 +274,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe.skip('08 - Exibe uma relação de álbuns produzidos pelo artista Elis Regina', () => {
+  describe('08 - Exibe uma relação de álbuns produzidos pelo artista Elis Regina', () => {
     it('Verifica o desafio 8', async () => {
       const challengeQuery = readFileSync('desafio8.sql', 'utf8');
 
