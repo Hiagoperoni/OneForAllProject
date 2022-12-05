@@ -274,7 +274,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe('08 - Exibe uma relação de álbuns produzidos pelo artista Elis Regina', () => {
+  describe.skip('08 - Exibe uma relação de álbuns produzidos pelo artista Elis Regina', () => {
     it('Verifica o desafio 8', async () => {
       const challengeQuery = readFileSync('desafio8.sql', 'utf8');
 
@@ -284,7 +284,7 @@ describe('Queries de seleção', () => {
     });
   });
 
-  describe.skip('09 - Exibe a quantidade de músicas que estão presentes atualmente no histórico de reprodução da pessoa usuária Barbara Liskov', () => {
+  describe('09 - Exibe a quantidade de músicas que estão presentes atualmente no histórico de reprodução da pessoa usuária Barbara Liskov', () => {
     it('Verifica o desafio 9', async () => {
       const challengeQuery = readFileSync('desafio9.sql', 'utf8');
 
